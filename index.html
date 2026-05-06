@@ -1,59 +1,217 @@
 <html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
+    <title>مواضيع عمارتنا</title>
     <style>
-  /* تنسيق الحاوية اللي شايلة الزراير عشان يبقوا في النص فوق */
-.top-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* المسافة بين الزرارين */
-  padding: 20px;
-  position: absolute; /* عشان نثبتهم فوق */
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
+        /* --- التنسيقات الأساسية --- */
+        body { 
+            font-family: sans-serif; 
+            background: #121212; 
+            color: white; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh; 
+        }
 
-/* تنسيق الزراير نفسها */
-.top-btn {
-  background-color: #00d2ff; /* نفس درجة اللون اللبني تقريباً */
-  color: #000000; /* لون النص أسود */
-  text-decoration: none; /* عشان نشيل الخط اللي تحت اللينك */
-  padding: 10px 20px;
-  border-radius: 8px; /* حواف دائرية */
-  font-weight: bold;
-  font-size: 16px;
-  font-family: inherit; /* عشان ياخد نفس خط الموقع */
-  transition: 0.3s; /* نعومة في الحركة لما تقف بالماوس */
-}
+        /* --- شريط الزراير العلوي --- */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            flex-wrap: wrap; 
+            gap: 10px;
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            margin-bottom: 30px;
+        }
 
-/* تأثير لما الماوس ييجي على الزرار */
-.top-btn:hover {
-  background-color: #00a8cc; /* درجة أغمق شوية */
-  transform: translateY(-2px); /* الزرار يترفع لفوق سيكا */
-}
-        body { font-family: sans-serif; background: #121212; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #1e1e1e; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 450px; width: 90%; border: 1px solid #333; }
-        #topic { font-size: 1.6rem; margin: 30px 0; color: #00d4ff; font-weight: bold; line-height: 1.5; }
-        button { background: #00d4ff; color: black; border: none; padding: 15px 35px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.2rem; }
+        .top-btn {
+            background-color: #00d2ff;
+            color: #000000;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .top-btn:hover {
+            background-color: #00a8cc;
+            transform: translateY(-2px);
+        }
+
+        /* --- ويدجت التايمر والوقت --- */
+        .time-widget {
+            background: #1e1e1e;
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        #stopwatch {
+            font-size: 2.5rem;
+            color: #00d4ff;
+            font-weight: bold;
+            font-family: monospace;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            direction: ltr;
+        }
+
+        .timer-btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .small-btn {
+            padding: 8px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-start { background: #2ecc71; color: #000; }
+        .btn-pause { background: #e74c3c; color: #fff; }
+        .btn-reset { background: #f1c40f; color: #000; }
+
+        .small-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+        #egypt-time {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 10px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+
+        /* --- كارت الأسئلة --- */
+        .card { 
+            background: #1e1e1e; 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            max-width: 500px; 
+            width: 90%; 
+            border: 1px solid #333; 
+            margin-bottom: 40px; 
+        }
+
+        .card h1 { margin-top: 0; }
+
+        #topic { 
+            font-size: 1.6rem; 
+            margin: 30px 0; 
+            color: #00d4ff; 
+            font-weight: bold; 
+            line-height: 1.5; 
+        }
+
+        /* --- تنسيقات زراير الكارت --- */
+        .card-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .main-btn { 
+            background: #00d4ff; 
+            color: black; 
+            border: none; 
+            padding: 15px 35px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 1.2rem; 
+            transition: 0.3s;
+        }
+        .main-btn:hover { background: #00a8cc; }
+
+        .copy-btn {
+            background: #f1c40f; /* لون مميز لزرار النسخ */
+        }
+        .copy-btn:hover {
+            background: #f39c12;
+        }
+
+        /* --- الفوتر --- */
+        footer {
+            background: rgba(13, 17, 30, 0.8);
+            border-top: 1px solid #333;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            margin-top: auto; 
+            box-sizing: border-box;
+        }
+        footer p { margin: 5px 0; }
     </style>
-<style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style></head>
+</head>
 <body>
+
     <div class="top-nav">
-  <a href="https://omarsalam22142214-ops.github.io/topic-A17/" class="top-btn" target="_blank">A</a><a href="https://omarsalam22142214-ops.github.io/topic-B-17/" class="top-btn" target="_blank">B</a><a href="https://omarsalam22142214-ops.github.io/topic-C-17/" class="top-btn" target="_blank">C</a><a href="https://omarsalam22142214-ops.github.io/topic-1-17/" class="top-btn" target="_blank">1</a>
-  <a href="https://omarsalam22142214-ops.github.io/topic-2-17/" class="top-btn" target="_blank">2</a>
-  <a href="https://omarsalam22142214-ops.github.io/topic-3-17/" class="top-btn" target="_blank">3</a>
-  <a href="https://omarsalam22142214-ops.github.io/topic-4-17/" class="top-btn" target="_blank">4</a>
-  <a href="https://omarsalam22142214-ops.github.io/topic-5-17/" class="top-btn" target="_blank">5</a><a href="https://omarsalam22142214-ops.github.io/topic-5-2-17/" class="top-btn" target="_blank">2_5</a>
-  <a href="https://omarsalam22142214-ops.github.io/topic-6-17/" class="top-btn" target="_blank">6</a><a href="https://omarsalam22142214-ops.github.io/topic-6-2-17/" class="top-btn" target="_blank">2_6</a><a href="https://omarsalam22142214-ops.github.io/topic-7-17/" class="top-btn" target="_blank">7</a><a href="https://omarsalam22142214-ops.github.io/topic-8-17/" class="top-btn" target="_blank">8</a><a href="https://omarsalam22142214-ops.github.io/topic-8-_-2-17/" class="top-btn" target="_blank">2_8</a><a href="https://omarsalam22142214-ops.github.io/topic-9-17/" class="top-btn" target="_blank">9</a>
-</div>
-    <div class="card">
-        <h1>  مواضيع عمارتنا</h1>
-        <div id="topic">جاهز للنقاش؟</div>
-        <button onclick="nextQ()">الموضوع التالي ➡️</button>
+        <a href="https://omarsalam22142214-ops.github.io/topic-A17/" class="top-btn" target="_blank">A</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-B-17/" class="top-btn" target="_blank">B</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-C-17/" class="top-btn" target="_blank">C</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-1-17/" class="top-btn" target="_blank">1</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-2-17/" class="top-btn" target="_blank">2</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-3-17/" class="top-btn" target="_blank">3</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-4-17/" class="top-btn" target="_blank">4</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-5-17/" class="top-btn" target="_blank">5</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-5-2-17/" class="top-btn" target="_blank">2_5</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-6-17/" class="top-btn" target="_blank">6</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-6-2-17/" class="top-btn" target="_blank">2_6</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-7-17/" class="top-btn" target="_blank">7</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-8-17/" class="top-btn" target="_blank">8</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-8-_-2-17/" class="top-btn" target="_blank">2_8</a>
+        <a href="https://omarsalam22142214-ops.github.io/topic-9-17/" class="top-btn" target="_blank">9</a>
     </div>
+
+    <div class="time-widget">
+        <!-- التايمر وزراير التحكم -->
+        
+        
+        
+        <!-- توقيت مصر -->
+        <div id="egypt-time">توقيت مصر: <span style="direction: ltr; display: inline-block;">02:31:47 AM</span></div>
+    </div>
+
+    <div class="card">
+        <h1>مواضيع عمارتنا</h1>
+        <div id="topic">جاهز للنقاش؟</div>
+        
+        <!-- زراير التحكم في الأسئلة والنسخ -->
+        <div class="card-actions">
+            <button class="main-btn" onclick="nextQ()">الموضوع التالي ➡️</button>
+            <button class="main-btn copy-btn" onclick="copyTopic()" id="copyBtn">نسخ السؤال 📋</button>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 18px; font-weight: bold; color: #00d4ff;">© 2026 _ 2027 ENG OMAR All Rights Reserved.</p>
+        <p style="color: #2ecc71; font-size: 18px; font-weight: bold;">اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ ﷺ</p>
+    </footer>
+
     <script>
+        // مصفوفة الأسئلة
         const qs = [
-    "إيه أكتر حاجة مدايقاك في البلد اليومين دول؟",
+             "إيه أكتر حاجة مدايقاك في البلد اليومين دول؟",
     "شايف الأسعار بتغلى ليه؟",
     "الغلا ده سببه مين: حكومة ولا تجار ولا ناس؟",
     "إيه اللي اتغير في أخلاق الناس عن زمان؟",
@@ -8852,21 +9010,85 @@
     "الشغل الحكومي أأمن ولا شغل القطاع الخاص؟",
     "هل النجاح محتاج واسطة؟",
     "هل الدين علاقة شخصية ولا مجتمعية؟"
-];
+        ];
+
         function nextQ() {
             const r = Math.floor(Math.random() * qs.length);
             document.getElementById('topic').innerText = qs[r];
         }
-    </script><footer style="background: rgba(13, 17, 30, 0.45); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.15); padding: 30px 20px; text-align: center; color: #fff; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0,0,0,0.5);">
-        <p style="font-size: 22px; font-weight: bold; text-shadow: 0 0 10px rgba(255,255,255,0.4); margin-bottom: 10px; letter-spacing: 1px;">© 2027 _ 2026 ENG OMAR All Rights Reserved.</p>
-        <p style="color: #2ecc71; text-shadow: 0 0 10px rgba(46, 204, 113, 0.6); font-size: 18px; font-weight: bold; margin-bottom: 25px;">اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ ﷺ</p>
-        
-        <div style="margin-top: 20px;">
+
+        // --- دالة نسخ السؤال ---
+        function copyTopic() {
+            const topicText = document.getElementById('topic').innerText;
             
-        </div>
-    </footer>
+            // عشان لو لسه مختارش سؤال ميعملش نسخ للعنوان المبدئي
+            if(topicText === "جاهز للنقاش؟") {
+                alert("اختار موضوع الأول عشان تقدر تنسخه!");
+                return;
+            }
 
+            navigator.clipboard.writeText(topicText).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                const originalText = copyBtn.innerHTML;
+                
+                // تغيير النص عشان ندي تأكيد للمستخدم
+                copyBtn.innerHTML = "تم النسخ! ✅";
+                
+                // نرجعه لأصله بعد ثانيتين
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('فشل النسخ: ', err);
+                alert('حصلت مشكلة ومش قادرين ننسخ النص.');
+            });
+        }
 
+        // --- كود توقيت مصر ---
+        function updateEgyptTime() {
+            const options = { 
+                timeZone: 'Africa/Cairo', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            };
+            const timeString = new Date().toLocaleTimeString('en-US', options);
+            document.getElementById('egypt-time').innerHTML = `توقيت مصر: <span style="direction: ltr; display: inline-block;">${timeString}</span>`;
+        }
+        setInterval(updateEgyptTime, 1000);
+        updateEgyptTime();
 
+        // --- كود التايمر ---
+        let timerInterval;
+        let timerSeconds = 0;
+
+        function updateTimerDisplay() {
+            const h = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+            const m = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+            const s = String(timerSeconds % 60).padStart(2, '0');
+            document.getElementById('stopwatch').innerText = `${h}:${m}:${s}`;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSeconds = 0;
+            updateTimerDisplay();
+        }
+    </script>
 
 </body></html>
