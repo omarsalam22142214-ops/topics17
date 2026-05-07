@@ -1,6 +1,6 @@
 <html lang="ar" dir="rtl"><head>
     <meta charset="UTF-8">
-    <title>مواضيعنا</title>
+    <title>مواضيع عمارتنا</title>
     <style>
         /* --- التنسيقات الأساسية (الدارك مود الافتراضي) --- */
         body { 
@@ -33,7 +33,6 @@
             box-sizing: border-box;
             background: #1a1a1a;
             border-bottom: 1px solid #333;
-            margin-bottom: 30px;
             transition: 0.3s;
         }
         
@@ -67,6 +66,18 @@
         }
         #themeToggle:hover {
             background-color: #f39c12;
+        }
+
+        /* --- الحاوية الرئيسية (عشان تسنتر المحتوى في نص الشاشة) --- */
+        .main-wrapper {
+            flex: 1; /* بتاخد كل المساحة المتبقية بين الهيدر والفوتر */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* بتوسط المحتوى بالطول */
+            width: 100%;
+            padding: 20px 0;
+            box-sizing: border-box;
         }
 
         /* --- ويدجت التايمر والوقت --- */
@@ -198,7 +209,6 @@
             max-width: 500px; 
             width: 90%; 
             border: 1px solid #333; 
-            margin-bottom: 40px; 
             transition: 0.3s;
         }
 
@@ -253,7 +263,7 @@
             text-align: center;
             color: #fff;
             width: 100%;
-            margin-top: auto; 
+            margin-top: auto; /* ده بيزق الفوتر لتحت خالص */
             box-sizing: border-box;
             transition: 0.3s;
         }
@@ -292,26 +302,27 @@
         <a href="https://omarsalam22142214-ops.github.io/topic-9-17/" class="top-btn" target="_blank">9</a>
     </div>
 
-    <!-- زرار وحاوية إضافة الأسئلة المتعددة -->
-    <button class="add-toggle-btn" onclick="toggleAddContainer()">إضافة أسئلة جديدة ➕</button>
-    <div id="addContainer" class="add-container hidden">
-        <textarea id="newQuestionInput" placeholder="انسخ الأسئلة هنا... (كل سؤال في سطر لوحده)"></textarea>
-        <button class="small-btn btn-start" onclick="addNewQuestions()">أضف الأسئلة</button>
-    </div>
+    <div class="main-wrapper">
+        <button class="add-toggle-btn" onclick="toggleAddContainer()">إضافة أسئلة جديدة ➕</button>
+        <div id="addContainer" class="add-container hidden">
+            <textarea id="newQuestionInput" placeholder="انسخ الأسئلة هنا... (كل سؤال في سطر لوحده)"></textarea>
+            <button class="small-btn btn-start" onclick="addNewQuestions()">أضف الأسئلة</button>
+        </div>
 
-    <div class="time-widget">
-        
-        
-        <div id="egypt-time">توقيت مصر: <span style="direction: ltr; display: inline-block;">03:41:15 AM</span></div>
-    </div>
+        <div class="time-widget">
+            
+            
+            <div id="egypt-time">توقيت مصر: <span style="direction: ltr; display: inline-block;">03:56:17 AM</span></div>
+        </div>
 
-    <div class="card">
-        <h1>مواضيع عمارتنا</h1>
-        <div id="topic">جاهز للنقاش؟</div>
-        
-        <div class="card-actions">
-            <button class="main-btn" onclick="nextQ()">الموضوع التالي ➡️</button>
-            <button class="main-btn copy-btn" onclick="copyTopic()" id="copyBtn">نسخ السؤال 📋</button>
+        <div class="card">
+            <h1>مواضيع عمارتنا</h1>
+            <div id="topic">جاهز للنقاش؟</div>
+            
+            <div class="card-actions">
+                <button class="main-btn copy-btn" onclick="copyTopic()" id="copyBtn">نسخ السؤال 📋</button>
+                <button class="main-btn" onclick="nextQ()">الموضوع التالي ➡️</button>
+            </div>
         </div>
     </div>
 
@@ -334,7 +345,6 @@
         }
 
         // --- المصفوفة الأساسية وتخزين البيانات ---
-        // بنعمل مصفوفة افتراضية فيها سؤال واحد كبداية
         let qs = [
            "إيه أكتر حاجة مدايقاك في البلد اليومين دول؟",
     "شايف الأسعار بتغلى ليه؟",
@@ -9137,10 +9147,8 @@
     "هل الدين علاقة شخصية ولا مجتمعية؟"
         ];
 
-        // أول ما الصفحة تفتح، بنشيك هل المتصفح فيه أسئلة متخزنة من قبل كده ولا لأ
         const savedQuestions = localStorage.getItem('omarsSavedQuestions');
         if (savedQuestions) {
-            // لو لقينا أسئلة، بنسحبها ونحطها في المصفوفة بتاعتنا
             qs = JSON.parse(savedQuestions);
         }
 
@@ -9159,12 +9167,8 @@
                                          .filter(q => q !== "");
             
             if (newQuestionsList.length > 0) {
-                // بنضيف الأسئلة الجديدة للمصفوفة
                 qs.push(...newQuestionsList); 
-                
-                // الخطوة الأهم: بنحفظ المصفوفة الجديدة في الـ Local Storage عشان ماتتمسحش
                 localStorage.setItem('omarsSavedQuestions', JSON.stringify(qs));
-
                 input.value = ""; 
                 alert(`عاش يا هندسة! تم إضافة ${newQuestionsList.length} سؤال بنجاح ✅\nإجمالي الأسئلة دلوقتي: ${qs.length}`);
             } else {
